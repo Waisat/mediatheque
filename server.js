@@ -6,7 +6,6 @@ const express = require('express'),
     mysql = require('mysql')
 const db = require('./server/Database')
 
-//connect to my sql
 
 db.connection.connect(function(err) {
 
@@ -18,17 +17,18 @@ db.connection.connect(function(err) {
 
 });
 
-// make server object that contain port property and the value for our server.
+// Objet server contenant le port
 var server = {
     port: 4040
 };
 
-// use the modules
+// module cors et body-parser
 
 app.use(cors())
 app.use(bodyParser.json());
 
 //routes
 require('./routes/movies.routes')(app);
+require('./routes/auth.routes.js')(app);
 // starting the server
 app.listen( server.port , () => console.log(`Server started, listening port: ${server.port}`));

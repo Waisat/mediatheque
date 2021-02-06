@@ -1,7 +1,7 @@
-const controller = require( '../controller/movies.controller')
+const authController = require('../controller/auth.controller.js')
 
 module.exports = function(app) {
 
-    app.get("/api/movies", controller.movies);
+    app.post("/api/signUp", authController.signUp);
 
 }

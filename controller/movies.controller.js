@@ -1,17 +1,22 @@
-var db = require('../server/Database')
+var Db = require('../server/Database')
+
 
 exports.movies=(req, res)=>{
 
-  db.connection.query('SELECT id, title, description FROM movies', function (error, results, fields) {
-        if (error) throw error;
+    var sql = 'SELECT id, title, description FROM movies';
+    Db.connection.query(sql, function (err, result) {
+
+        if (err) return true;
+
+
         else{
+            result=JSON.parse(JSON.stringify(result))
+            console.log(result);
+            return false
 
-            console.log('fields', fields)
-            results=JSON.parse(JSON.stringify(results))
-
-            console.log('>> results: ', results );
         }
-        console.log('The solution is: ');
+
     });
 
-};
+
+}
